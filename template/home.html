@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-500 min-h-screen flex items-center justify-center"> 
+
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md text-center">
+        <h2 class="text-3xl font-semibold text-gray-800 mb-2">Welcome <span class="text-indigo-600">{{ user }}</span></h2>
+        <form method="POST" action="{% url 'logout'%}">
+            {% csrf_token %}
+            <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-md font-semibold transition duration-300 ease-in-out">Logout</button>
+        </form>
+    </div>
+
+</body>
+</html>

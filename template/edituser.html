@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit User</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-800 text-white flex justify-center items-center h-screen">
+
+    <div class="container bg-gray-700 p-8 rounded-lg shadow-lg text-center max-w-md w-full">
+        <h2 class="text-green-400 text-2xl mb-6">Edit User</h2>
+        <div class="message mb-4">
+            <!-- Display success or error message here -->
+        </div>
+        <form method="POST" action="{% url 'edituser' user.id %}" class="space-y-6">
+            {% csrf_token %}
+            <div>
+                <label for="username" class="block text-gray-300 text-left mb-2">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Enter new username" required value="{{ user.username }}" 
+                    class="w-full p-3 bg-gray-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-400" />
+                {% if usererror %}
+                    <p class="text-red-500 mt-1">{{ usererror }}</p>
+                {% endif %}
+            </div>
+
+            <div>
+                <label for="email" class="block text-gray-300 text-left mb-2">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter new email" required value="{{ user.email }}" 
+                    class="w-full p-3 bg-gray-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-400" />
+                {% if emailerror %}
+                    <p class="text-red-500 mt-1">{{ emailerror }}</p>
+                {% endif %}
+            </div>
+
+            <div>
+                <label for="password" class="block text-gray-300 text-left mb-2">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter new password (optional)" 
+                    class="w-full p-3 bg-gray-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-400" />
+            </div>
+
+            <button type="submit" class="w-full bg-green-500 hover:bg-green-400 text-white py-2 rounded-md focus:outline-none">
+                Save Changes
+            </button>
+        </form>
+
+        <a href="{% url 'myadmin' %}">
+            <button class="w-full bg-gray-600 hover:bg-gray-500 text-white py-2 rounded-md mt-4 focus:outline-none">
+                Back to Admin Panel
+            </button>
+        </a>
+    </div>
+
+    <script>
+        function goBackToAdmin() {
+            // Redirect to the admin panel
+            window.location.href = '/admin-panel';
+        }
+    </script>
+
+</body>
+</html>
